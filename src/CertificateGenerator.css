@@ -1,0 +1,334 @@
+/* --- Modern UI based on Image Reference --- */
+
+.app-container {
+  display: flex;
+  flex-direction: row;
+  width: 100vw;
+  height: 100vh;
+  background-color: #f0f2f5; /* Light grey background like mobile frame */
+  overflow: hidden;
+  font-family: 'Inter', 'Segoe UI', sans-serif;
+  
+}
+
+.editor-card {
+  width: 450px;
+  background: #f8faff; 
+  padding: 30px 25px;
+  /* display: flex; */
+  flex-direction: column;
+  gap: 15px;
+  
+  z-index: 10;
+  /* overflow-y: auto; */
+  box-shadow: 10px 0 30px rgba(0,0,0,0.05);
+}
+
+.title, .title-top {
+  color: #1a1a1a;
+  margin-bottom: 10px;
+  font-size: 24px;
+  font-weight: 800;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.title-top{
+  display:none
+}
+/* .input-group {
+  margin-bottom: 20px;
+} */
+.canvas-img{
+  border: #1a1a1a;
+}
+.input-group label {
+  display: block;
+  font-weight: 700;
+  font-size: 14px;
+  color: #4b4b4b;
+  margin-bottom: 10px;
+}
+.input-group{
+  margin-bottom: 10px;
+}
+/* Pill Shaped Text Input */
+.input-group input[type="text"] {
+  width: 88%;
+  padding: 15px 25px;
+  border: 2px solid #e0e6ed;
+  border-radius: 50px; /* Pill shape like image */
+  font-size: 16px;
+  background: #ffffff;
+  transition: all 0.3s ease;
+  color: #333;
+}
+
+.input-group input[type="text"]:focus {
+  border-color: #4a6cf7;
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(74, 108, 247, 0.1);
+}
+
+/* File Input Styling */
+.input-group input[type="file"] {
+  width: 90%;
+  padding: 12px;
+  border: 2px dashed #cbd5e0;
+  border-radius: 20px;
+  background: #ffffff;
+  cursor: pointer;
+}
+
+/* Modern Range Slider like Image */
+input[type="range"] {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 6px;
+  background: #dfe4f1;
+  border-radius: 5px;
+  margin: 15px 0;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 28px;
+  height: 28px;
+  background: #4a6cf7; /* Blue color from image */
+  border-radius: 50%;
+  cursor: pointer;
+  border: 4px solid #fff;
+  box-shadow: 0 4px 10px rgba(74, 108, 247, 0.3);
+}
+
+/* Control Section Box */
+.control-section {
+  background: transparent;
+  padding: 0;
+  margin-bottom: 20px;
+  border: none;
+}
+
+.control-section h4 {
+  font-size: 14px;
+  font-weight: 700;
+  color: #4b4b4b;
+  margin-bottom: 0px;
+}
+
+/* Generate Button - Rounded Pill */
+.btn-generate {
+  width: 100%;
+  background: #4a6cf7; /* Premium Blue */
+  color: white;
+  border: none;
+  padding: 18px;
+  border-radius: 50px; /* Full Rounded */
+  font-weight: 800;
+  font-size: 16px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 20px rgba(74, 108, 247, 0.25);
+}
+
+.btn-generate:hover {
+  background: #3a56d4;
+  transform: translateY(-2px);
+}
+
+/* Preview Section Styling */
+.preview-section {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: #1a1a1a;
+}
+
+canvas {
+  max-height: 85vh;
+  max-width: 95%;
+  object-fit: contain;
+  border-radius: 12px;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+}
+/* --- Modern User Photo Upload (Drag & Drop Look) --- */
+
+/* Upload wrapper ko style karne ke liye input-group ko extend kiya */
+.input-group.upload-zone {
+  position: relative;
+  border: 2px dashed #cbd5e0; /* Dashed border like image */
+  border-radius: 24px;
+  padding: 30px 15px;
+  text-align: center;
+  background: #f8faff;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+  gap: 10px;
+}
+
+.input-group.upload-zone:hover {
+  background: #f0f4ff;
+  border-color: #4a6cf7;
+}
+
+/* Hidden default input but clickable via label */
+.input-group.upload-zone input[type="file"] {
+  position: absolute;
+  width: 90%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  opacity: 0; /* Isse asli button chhup jayega par click kaam karega */
+  cursor: pointer;
+}
+
+/* Upload Icon (Blue Cloud look) */
+.upload-zone {
+  position: relative;
+  border: 2px dashed #4a6cf7; /* Blue dashed border */
+  border-radius: 24px;
+  padding: 25px 15px;
+  text-align: center;
+  background: #f8faff;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  overflow: hidden;
+}
+
+.upload-zone:hover {
+  background: #f0f4ff;
+  border-color: #3a56d4;
+}
+
+/* Hidden input ko full area cover karne ke liye */
+.upload-zone input[type="file"] {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.upload-icon {
+  width: 40px;
+  height: 40px;
+  background-color: #4a6cf7;
+  /* SVG icon for cloud upload */
+  -webkit-mask: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4'%3E%3C/path%3E%3Cpolyline points='17 8 12 3 7 8'%3E%3C/polyline%3E%3Cline x1='12' y1='3' x2='12' y2='15'%3E%3C/line%3E%3C/svg%3E") no-repeat center;
+  mask: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4'%3E%3C/path%3E%3Cpolyline points='17 8 12 3 7 8'%3E%3C/polyline%3E%3Cline x1='12' y1='3' x2='12' y2='15'%3E%3C/line%3E%3C/svg%3E") no-repeat center;
+}
+
+.upload-text {
+  font-size: 13px;
+  color: #718096;
+}
+.top-logo, .top-logo1{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.top-logo1{
+  /* position: ;s */
+  padding: 10px;
+  padding-right: 0;
+  background-color:#F8FAFF;
+}
+.top-logo img, .top-logo1 img{
+  width: 100%;
+  height: auto;
+}
+.top-logo1 img{
+  width: 95%;
+}
+/* Selector Styling */
+.name-selector {
+  width: 100%;
+  padding: 15px 25px;
+  border: 2px solid #e0e6ed;
+  border-radius: 50px; 
+  font-size: 16px;
+  background: #ffffff;
+  color: #333;
+  cursor: pointer;
+  text-transform: uppercase;
+  appearance: none; 
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%234a6cf7' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 20px center;
+  background-size: 16px;
+  transition: all 0.3s ease;
+  margin-bottom: 10px;
+}
+
+.name-selector:focus {
+ border-color: #4a6cf7;
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(74, 108, 247, 0.1);
+}
+
+.name-selector option {
+  padding: 10px;
+  background: white;
+}
+.top-logo1{
+  display: none;
+}
+/* Mobile responsive overhaul */
+@media (max-width: 900px) {
+  .app-container {
+    flex-direction: column-reverse;
+    height: auto;
+    overflow-y: auto;
+    width: 100%;
+  }
+  .top-logo{
+  display: none;
+  }
+  .top-logo1{
+  display: block;
+  width: 97%;
+}
+.title{
+  font-weight: bolder;
+  display: none;
+ }
+  .editor-card {
+    height: 70vh;
+    width: 90%;
+    border-radius: 0 0 40px 40px;
+    padding: 25px 20px;
+    box-shadow: none;
+  }
+
+  .preview-section {
+    height: 50vh;
+  }
+  canvas{
+    height: 35vh;
+  }
+
+  .btn-generate {
+    margin-top: 20px;
+  }
+  .title-top{
+    display: block;
+  }
+  .input-group input[type="text"] {
+    width: 86%;
+  }
+}
